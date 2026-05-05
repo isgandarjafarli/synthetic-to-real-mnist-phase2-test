@@ -59,7 +59,18 @@ synthetic-to-real-mnist/
 | Isgandar Jafarli | Project design, synthetic digit generation, PyTorch training pipeline, Phase 1 implementation, Phase 2 experiment suite, analysis, README, and notebook preparation |
 
 
-## Setup
+## Setup and Installation
+
+### Requirements
+
+- Python 3.8+
+- PyTorch 2.0+
+- torchvision
+- numpy
+- matplotlib
+- Pillow
+- scikit-learn
+- tqdm
 
 ### Google Colab
 
