@@ -13,7 +13,7 @@ This project investigates whether deep learning models, especially CNNs, can lea
 A standard MNIST classifier is trained on real MNIST and tests on real MNIST. Here, however, the research question is whether a CNN can learn and transfer digit features from artificial images that are generated with code. These images are specifically made to look smeared, blurry and not as rigid as MNIST images to mimic the variety in human handwriting and to allign with research purposes and compatibility with the classifier. Real MNIST training is used only as an upper-bound comparison; the main analysis of my research is the gap between synthetic validation performance and real MNIST test performance.
 
 ## Phase 2 experiment suite
-###I wrote the text but used AI to create the table since it saved time
+### I wrote the text but used AI to create the table since it saved time
 
 | Experiment group | What it tests | Why it matters |
 |---|---|---|
