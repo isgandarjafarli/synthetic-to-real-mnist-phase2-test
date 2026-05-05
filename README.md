@@ -1,29 +1,33 @@
 # Synthetic-to-Real Transfer Learning on MNIST - Phase 2
 
+##CSCI4701
+
 ## Project goal
 
-**Research question:** Can a convolutional neural network trained on synthetically generated digit images classify real handwritten MNIST digits, and which changes to the synthetic data generation process reduce the synthetic-to-real domain gap?
+**Research question:** Can a convolutional neural network trained exclusively on synthetically generated digit-images accurately classify real handwritten digits from the whole MNIST dataset? (50K images)
 
-This project studies a focused deep-learning transfer problem. The model is not changed between experiments. Instead, the training data changes: basic synthetic digits, larger synthetic datasets, improved synthetic digits with noise/blur/stroke variation, small real-data hybrids, and controlled generation ablations. The target evaluation is always real MNIST test accuracy.
+This project investigates whether deep learning models, especially CNNs, can learn useful features from entirely artifical training data and successfully generalize these learned representations to MNIST data images. Understanding this transfer capability of deep neural networks has real-life practical implications for fields where real data may be scarce or expensive, and generating synthetic data might be easier. In this case, whether such artifical datasets (that look effortless and slam-dunk) can transfer their features to real-life examples.
 
 ## Why this is not just a standard MNIST project
 
-A standard MNIST classifier trains on real MNIST and tests on real MNIST. Here, the central question is whether a CNN can learn transferable digit features from artificial images that are generated with code. Real MNIST training is used only as an upper-bound comparison. The main analysis is the gap between synthetic validation performance and real MNIST test performance.
+A standard MNIST classifier is trained on real MNIST and tests on real MNIST. Here, however, the research question is whether a CNN can learn and transfer digit features from artificial images that are generated with code. These images are specifically made to look smeared, blurry and not as rigid as MNIST images to mimic the variety in human handwriting and to allign with research purposes and compatibility with the classifier. Real MNIST training is used only as an upper-bound comparison; the main analysis of my research is the gap between synthetic validation performance and real MNIST test performance.
 
 ## Phase 2 experiment suite
+###I wrote the text but used AI to create the table since it saved time
 
 | Experiment group | What it tests | Why it matters |
 |---|---|---|
-| Real MNIST baseline | CNN trained on real MNIST | Upper-bound comparison for the same model architecture |
-| Basic synthetic 10k | Phase 1-style synthetic training | Reproduces the initial transfer setting |
-| Basic synthetic 50k | More synthetic samples | Tests whether scale alone improves transfer |
-| Improved synthetic 50k | Noise, blur, stroke/intensity variation, shift, shear | Tests whether reducing the visual domain gap helps |
-| Hybrid 5%, 10%, 20% real | Synthetic data mixed with small real MNIST subsets | Tests how much labeled real data is needed to anchor the synthetic data |
-| Rotation ablation | Rotation ranges 0, 10, 20, 35 degrees | Tests whether rotation helps robustness or creates unrealistic examples |
-| Thickness ablation | Thin, medium, and wide stroke ranges | Tests whether stroke width affects real-domain transfer |
-| Conv-filter visualization | First-layer filters for real vs synthetic training | Qualitative feature analysis |
+| Real MNIST baseline | CNN trained on real MNIST | Upper-bound comparison |
+| Basic synthetic 10k | Phase 1's synthetic training | Reproduces the initial transfer setting |
+| Basic synthetic 50k | More synthetic samples | tests whether scale can improves feature transfer |
+| Improved synthetic 50k | Noise, blur, stroke/intensity variation, shift, shear used | tests whether editing visuals helps |
+| Hybrid 5%, 10%, 20% real | Synthetic data mixed with small real MNIST images | Tests how much labeled real data is needed to handle the synthetic data |
+| Rotation ablation | Rotation ranges 0, 10, 20, 35 degrees (Phase 1's) | Tests whether rotation helps robustness or does the opposite |
+| Thickness ablation | thin, medium, and wide stroke ranges | Tests whether stroke width affects real-domain transfer |
+| Convolutional filter visualization | First-layer filters for real vs. synthetic training | Qualitative feature analysis |
 
 ## Repository structure
+### I used AI for this table to be made since I didn't know how to do this format
 
 ```text
 synthetic-to-real-mnist/
@@ -54,7 +58,6 @@ synthetic-to-real-mnist/
 |---|---|
 | Isgandar Jafarli | Project design, synthetic digit generation, PyTorch training pipeline, Phase 1 implementation, Phase 2 experiment suite, analysis, README, and notebook preparation |
 
-If this project has teammates, add their names and exact contributions before submission.
 
 ## Setup
 
@@ -120,11 +123,25 @@ The most important number is not only real test accuracy. Also compare validatio
 4. Hybrid training is no longer a purely synthetic experiment. It is included because it gives a practical comparison for reducing the domain gap.
 5. Results may vary slightly by hardware and PyTorch/CUDA nondeterminism, although seeds are fixed.
 
-## Submission notes
+## Computational Requirements
 
-For Milestone 2, submit both:
+- **Training time:** ~5-10 minutes on Google Colab GPU
+- **Memory:** <2GB GPU memory
+- **Storage:** <100MB for dataset and model
+- **Cost:** $0 (free Google Colab tier sufficient)
 
-1. the public GitHub repository link, and
-2. a ZIP archive of the same final repository.
+## References
 
-Before zipping, run the full notebook/script once so `outputs/phase2_results.csv`, `outputs/phase2_report.md`, and the README results section reflect the final experiment outputs.
+- MNIST Dataset: http://yann.lecun.com/exdb/mnist/
+- PyTorch Documentation: https://pytorch.org/docs/
+- Domain Transfer Learning: Various academic papers on synthetic-to-real transfer (all read by AI and narrated to me)
+
+## License
+
+Feel free to use this code for educational purposes.
+
+## Acknowledgments
+
+Course: CSCI 4701 Deep Learning (Spring 2026)  
+Institution: ADA University
+by Isgandar Jafarli
