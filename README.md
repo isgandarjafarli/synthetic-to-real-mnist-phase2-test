@@ -114,17 +114,36 @@ This creates:
 
 ## Main results
 
-The table below is intentionally generated from actual experiment outputs. Run the notebook or the command above to replace this section with real numbers.
-
 <!-- RESULTS_START -->
 Results not generated yet. Run `python run_phase2.py --mode full --update-readme` or run all cells in `phase2_notebook.ipynb`.
 <!-- RESULTS_END -->
 
 ## How to interpret the results
 
-Use the real MNIST baseline as the upper bound for the fixed CNN architecture. The synthetic-only runs answer whether artificial geometric data transfers at all. The 10k vs 50k comparison separates dataset scale from generator quality. The improved-generator comparison tests whether visual realism reduces the domain gap. The hybrid experiments answer a practical question: if synthetic data is cheap but a small amount of real labeled data is available, how much does that real data help?
+I used the real MNIST as the upper bound for the fixed CNN architecture. The synthethic-only mode answers whether artificially generated geometric digit-like shapes can transfer useful features and generalize. The improved generator comparison indicate that `visual realism` reduces the domain gap. The hybrid experiments, that I independently ran, yet decided to eventually to exclude, answered a practical and most important question: if synthetic data is cheap but a small amount of real labeled data is available, how much does that real data help?
 
-The most important number is not only real test accuracy. Also compare validation accuracy on the training domain against real MNIST test accuracy. A high validation score with a much lower real test score is evidence of domain shift: the model learned patterns that work for the generator but do not fully match real handwriting.
+The final answer to that was that the final data makes a noticeable/moderate difference and especially helps for numbers like 3,8,9 which
+greately struggled in Phase 1. Likely due to their similarity.
+
+The most important numbers are not only real test accuracies. Also compare validation accuracy on the training domain against real MNIST test accuracy. A high validation score with a much lower real test score is evidence of domain shift: the model learned patterns that work for the generator but do not fully match real handwriting. But also validation accuracies against real MNISTs. Our baseline was never chance (10% for our case) but beating a higher floor value, which we suceeded in doing, eventually. 
+
+## Milestone 2 resolution results:
+
+1. **Increase synthetic dataset size** to 50,000+ samples ✅ 
+2. **Improve synthetic generation** with more realistic variations ✅ 
+3. **Test hybrid approach:** Mix small amount of real data with synthetic ✅ 
+4. **Visualize learned features:** Compare filters learned from synthetic vs. real data ✅ ❌
+5. **Ablation studies:** Test impact of different synthetic variations (rotation, thickness, etc.) ✅ 
+6. **Baseline comparison:** Train model on real MNIST to quantify performance gap ✅ 
+7. **Synthetic Digit Improvement** Improve the way, especially, how some digits look ✅ 
+
+### Visualizations (Same as before with more figures)
+
+The notebook generates:
+1. Training curves - Loss and accuracy over epochs
+2. Confusion matrix - Which digits are confused with each other (please look at it yourself, very interesting results)
+3. Per-class accuracy - Performance breakdown by digit
+4. Prediction examples - Correct and incorrect classifications
 
 ## Limitations and failures to discuss
 
@@ -133,6 +152,16 @@ The most important number is not only real test accuracy. Also compare validatio
 3. The optimized synthetic generation has been very useful for the accuracy (usually 90%+) but too much rotation/noise/thickness variation may create unrealistic images. This may, in turn, hurt the transfer.
 4. Hybrid training is not a purely synthetic experiment, anymore. I included it since it drastically improves the feature domain gap. This is because it includes very small random MNIST batches. 
 5. Results may vary slightly by hardware and PyTorch/CUDA randomness.
+
+
+## What I did differentely from Phase 1
+
+This time, I acted smarter and wasted less time trying to fix every single bug, and instead patched a few things,
+I asked questions on forums where I could not fix the error, I stitched many pieces of codes together, did some vibe
+coding, got help from AI, and delegated not important tasks to AI. For example, the main criticism to my work was that
+my codes looked poorly organized. So what did I do? I did the same thing, edited and stitched my codes to their final versions
+and later used AI to make evrythign look neat. To standardize camelcase for functions, to use spacing properly, and expand 
+my messy comments into more readable comments.
 
 ## Computational Requirements
 
