@@ -20,15 +20,25 @@ def seed_worker(worker_id: int):
 
 def make_loader(dataset: Dataset, cfg: TrainConfig, shuffle: bool) -> DataLoader:
     generator = torch.Generator().manual_seed(cfg.seed)
-    # num_workers=0 is safer on Windows/local notebooks; Colab handles 2 fine.
+
+    def safe_collate(batch):
+        images, labels = zip(*batch)
+        images = torch.stack([
+            img if torch.is_tensor(img) else torch.tensor(img)
+            for img in images
+        ])
+        labels = torch.tensor([int(label) for label in labels], dtype=torch.long)
+        return images, labels
+
     return DataLoader(
         dataset,
         batch_size=cfg.batch_size,
         shuffle=shuffle,
-        num_workers=cfg.num_workers,
+        num_workers=0,
         pin_memory=torch.cuda.is_available() and cfg.pin_memory,
-        worker_init_fn=seed_worker,
+        worker_init_fn=None,
         generator=generator,
+        collate_fn=safe_collate,
     )
 
 
