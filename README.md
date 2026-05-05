@@ -128,11 +128,11 @@ The most important number is not only real test accuracy. Also compare validatio
 
 ## Limitations and failures to discuss
 
-1. The synthetic generator is manually designed, so it cannot capture all natural handwriting behavior.
-2. MNIST digits are centered, grayscale, and low-resolution; success here does not automatically imply success on harder real-world images.
-3. Improved synthetic generation can help, but too much rotation/noise/thickness variation may create unrealistic images and hurt transfer.
-4. Hybrid training is no longer a purely synthetic experiment. It is included because it gives a practical comparison for reducing the domain gap.
-5. Results may vary slightly by hardware and PyTorch/CUDA nondeterminism, although seeds are fixed.
+1. The synthetic digit generator is mnually designed and due to the limitations of the project, the entire depth of variety of human handwriting could not be captured. Instead, something very close to it, in a slightly smeared format was reproduced.
+2. MNIST digits are centered, grayscale, and low-resolution; success here does not automatically imply success on much more complex real-world digit images. (Yet, it doesn't need to, since it scales well for artifically generated digits)
+3. The optimized synthetic generation has been very useful for the accuracy (usually 90%+) but too much rotation/noise/thickness variation may create unrealistic images. This may, in turn, hurt the transfer.
+4. Hybrid training is not a purely synthetic experiment, anymore. I included it since it drastically improves the feature domain gap. This is because it includes very small random MNIST batches. 
+5. Results may vary slightly by hardware and PyTorch/CUDA randomness.
 
 ## Computational Requirements
 
