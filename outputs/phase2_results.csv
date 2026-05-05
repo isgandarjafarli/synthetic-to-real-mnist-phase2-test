@@ -1,0 +1,12 @@
+experiment,train_source,experiment_group,synthetic_samples,real_fraction,epochs,seed,val_accuracy,real_test_accuracy,generalization_gap,synth_config_name
+real_mnist_baseline,real,baseline,0,,4,42,98.73333333333333,98.95,-0.21666666666666856,
+synthetic_basic_10k,synthetic,scale,10000,,4,43,100.0,71.07,28.930000000000007,basic_rot15_thick2-4
+synthetic_basic_50k,synthetic,scale,50000,,4,44,99.98,80.96,19.02000000000001,basic_rot15_thick2-4
+synthetic_improved_50k,synthetic,improved_generation,50000,,4,45,99.58,83.49,16.090000000000003,improved_rot20_thick1-5
+ablation_rotation_0,synthetic,ablation_rotation,20000,,2,100,99.6,75.36,24.239999999999995,improved_rot0_thick1-5
+ablation_rotation_10,synthetic,ablation_rotation,20000,,2,110,99.35,80.07,19.28,improved_rot10_thick1-5
+ablation_rotation_20,synthetic,ablation_rotation,20000,,2,120,98.35,78.3,20.049999999999997,improved_rot20_thick1-5
+ablation_rotation_35,synthetic,ablation_rotation,20000,,2,135,98.0,84.1,13.900000000000006,improved_rot35_thick1-5
+ablation_thickness_thin,synthetic,ablation_thickness,20000,,2,201,99.5,78.29,21.209999999999994,improved_rot20_thick1-2
+ablation_thickness_medium,synthetic,ablation_thickness,20000,,2,202,99.1,81.91,17.189999999999998,improved_rot20_thick2-4
+ablation_thickness_wide,synthetic,ablation_thickness,20000,,2,204,98.65,73.51,25.14,improved_rot20_thick4-6
